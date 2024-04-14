@@ -32,7 +32,8 @@ class Conv2dReLU(nn.Sequential):
             padding=padding,
             bias=not (use_batchnorm),
         )
-        relu = nn.ReLU(inplace=True)
+        # relu = nn.ReLU(inplace=True)
+        relu = nn.LeakyReLU(negative_slope=0.01, inplace=True)
 
         if use_batchnorm == "inplace":
             bn = InPlaceABN(out_channels, activation="leaky_relu", activation_param=0.0)
